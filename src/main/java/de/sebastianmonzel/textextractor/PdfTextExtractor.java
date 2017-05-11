@@ -6,6 +6,7 @@ import org.apache.pdfbox.util.PDFTextStripper;
 import java.io.File;
 
 public class PdfTextExtractor extends TextExtractor {
+
     public PdfTextExtractor() {
     }
 
