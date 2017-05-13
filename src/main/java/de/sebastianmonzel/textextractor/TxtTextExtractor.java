@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 
-public class TxtTextExtractor extends TextExtractor {
+public class TxtTextExtractor extends AbstractTextExtractor {
 
     @Override
     public String extractText(File file) {

@@ -3,7 +3,7 @@ package de.sebastianmonzel.textextractor;
 import java.io.File;
 import java.io.InputStream;
 
-public class OcrTextExtractor extends TextExtractor {
+public class OcrTextExtractor extends AbstractTextExtractor {
 
     @Override
     public String extractText(File file) {

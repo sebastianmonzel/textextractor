@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.Locale;
 
-public abstract class TextExtractor {
+public abstract class AbstractTextExtractor {
 
     private String text;
 
@@ -34,7 +34,7 @@ public abstract class TextExtractor {
     }
 
     private File resolveStopwordFileByLocale(Locale locale) {
-        ClassLoader classLoader = TextExtractor.class.getClassLoader();
+        ClassLoader classLoader = AbstractTextExtractor.class.getClassLoader();
         File file = new File(classLoader.getResource("stopwords_" + locale.getLanguage() + ".txt").getFile());
         return file;
     }
