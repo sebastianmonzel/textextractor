@@ -5,6 +5,7 @@ import java.util.Locale;
 
 public abstract class AbstractTextExtractor {
 
+    public static final String LINE_SEPARATOR = "line.separator";
     protected String text;
     protected InputStream inputStream;
 
@@ -34,7 +35,7 @@ public abstract class AbstractTextExtractor {
                 .extractText()
                 .getText();
 
-        return stopwordText.split( System.getProperty("line.separator"));
+        return stopwordText.split( System.getProperty(LINE_SEPARATOR));
     }
 
     private File resolveStopwordFileByLocale(Locale locale) {

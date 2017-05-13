@@ -4,8 +4,6 @@ import java.io.*;
 
 public class TxtTextExtractor extends AbstractTextExtractor {
 
-    public static final String LINE_SEPARATOR = "line.separator";
-
     public static TxtTextExtractor of(File file) {
         return new TxtTextExtractor(file);
     }
