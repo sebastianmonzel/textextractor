@@ -8,21 +8,19 @@ import java.nio.file.Path;
 public class TxtTextExtractor extends AbstractTextExtractor {
 
     @Override
-    public String extractText(File file) {
+    public AbstractTextExtractor extractText(File file) {
         try {
             Path path = file.toPath();
             byte[] bytes = Files.readAllBytes(path);
-            String content = new String(bytes);
-
-            return content;
+            text = new String(bytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return this;
     }
 
     @Override
-    public String extractText(InputStream inputStream) {
+    public AbstractTextExtractor extractText(InputStream inputStream) {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder stringBuilder = new StringBuilder();
         try {
@@ -39,8 +37,11 @@ public class TxtTextExtractor extends AbstractTextExtractor {
                 e.printStackTrace();
             }
         }
-        return stringBuilder.toString();
+        text = stringBuilder.toString();
+
+        return this;
     }
+
 
 
 }

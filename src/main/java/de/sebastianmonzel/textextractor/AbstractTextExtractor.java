@@ -6,11 +6,11 @@ import java.util.Locale;
 
 public abstract class AbstractTextExtractor {
 
-    private String text;
+    protected String text;
 
-    public abstract String extractText(File file);
+    public abstract AbstractTextExtractor extractText(File file);
 
-    public String removeStopwords(Locale locale, String text) {
+    public AbstractTextExtractor removeStopwords(Locale locale) {
 
         String[] stopwords = readStopwords(locale);
 
@@ -21,14 +21,16 @@ public abstract class AbstractTextExtractor {
             replacedText = replacedText.replaceAll(" " + stopword.trim(),"");
         }
 
-        return replacedText;
+        text = replacedText;
+
+        return this;
     }
 
     private String[] readStopwords(Locale locale) {
         File stopwordFile = resolveStopwordFileByLocale(locale);
 
         TxtTextExtractor txtTextExtractor = new TxtTextExtractor();
-        String stopwordText = txtTextExtractor.extractText(stopwordFile);
+        String stopwordText = txtTextExtractor.extractText(stopwordFile).getText();
 
         return stopwordText.split( System.getProperty("line.separator"));
     }
@@ -39,5 +41,9 @@ public abstract class AbstractTextExtractor {
         return file;
     }
 
-    public abstract String extractText(InputStream inputStream);
+    public abstract AbstractTextExtractor extractText(InputStream inputStream);
+
+    public String getText() {
+        return text;
+    }
 }

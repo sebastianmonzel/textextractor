@@ -6,12 +6,12 @@ import java.io.InputStream;
 public class OcrTextExtractor extends AbstractTextExtractor {
 
     @Override
-    public String extractText(File file) {
+    public AbstractTextExtractor extractText(File file) {
         return null;
     }
 
     @Override
-    public String extractText(InputStream inputStream) {
+    public AbstractTextExtractor extractText(InputStream inputStream) {
         return null;
     }
 

@@ -8,11 +8,8 @@ import java.io.InputStream;
 
 public class PdfTextExtractor extends AbstractTextExtractor {
 
-    public PdfTextExtractor() {
-    }
-
     @Override
-    public String extractText(File file) {
+    public AbstractTextExtractor extractText(File file) {
         try {
             PDDocument document = PDDocument.load(file);
             PDFTextStripper stripper = new PDFTextStripper();
@@ -20,16 +17,16 @@ public class PdfTextExtractor extends AbstractTextExtractor {
             String content = stripper.getText(document);
             document.close();
 
-            return content;
+            text = content;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return this;
     }
 
     @Override
-    public String extractText(InputStream inputStream) {
+    public AbstractTextExtractor extractText(InputStream inputStream) {
         return null;
     }
 }
