@@ -9,7 +9,7 @@ import java.util.Locale;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class TxtTextExtractorTest {
+public class TxtTextExtractorTest extends AbstractTextExtractorTest {
 
     @Before
     public void setUp() throws Exception {
@@ -39,12 +39,6 @@ public class TxtTextExtractorTest {
                 .getText();
 
         assertThat(s,is("test"));
-    }
-
-
-
-    private InputStream getInputStreamFromResource(String name) {
-        return getClass().getClassLoader().getResourceAsStream(name);
     }
 
 

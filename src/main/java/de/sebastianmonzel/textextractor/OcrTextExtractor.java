@@ -8,12 +8,20 @@ public class OcrTextExtractor extends AbstractTextExtractor {
         return new OcrTextExtractor(file);
     }
 
+    public static OcrTextExtractor of(InputStream file) {
+        return new OcrTextExtractor(file);
+    }
+
     public OcrTextExtractor(File file) {
         try {
             this.inputStream = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public OcrTextExtractor(InputStream file) {
+        this.inputStream = file;
     }
 
 

@@ -34,6 +34,14 @@ public abstract class AbstractTextExtractor {
         return stopwordText.split(System.getProperty(LINE_SEPARATOR));
     }
 
+
+
+    private File resolveStopwordFileByLocale(Locale locale) {
+        ClassLoader classLoader = AbstractTextExtractor.class.getClassLoader();
+        File file = new File(classLoader.getResource("stopwords_" + locale.getLanguage() + ".txt").getFile());
+        return file;
+    }
+
     public AbstractTextExtractor removePunctuationMarks() {
 
         String[] punctuationMarks = {"\\,","\\;","\\!","\\.","\\?"};
@@ -44,11 +52,12 @@ public abstract class AbstractTextExtractor {
         return this;
     }
 
-    private File resolveStopwordFileByLocale(Locale locale) {
-        ClassLoader classLoader = AbstractTextExtractor.class.getClassLoader();
-        File file = new File(classLoader.getResource("stopwords_" + locale.getLanguage() + ".txt").getFile());
-        return file;
+    public AbstractTextExtractor normalizeWhitespace() {
+
+
+        return this;
     }
+
 
     public String getText() {
         return text;
