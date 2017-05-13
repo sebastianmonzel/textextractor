@@ -20,9 +20,8 @@ public class TxtTextExtractorTest {
 
         InputStream resourceAsStream = getInputStreamFromResource("test1234.txt");
 
-        TxtTextExtractor txtTextExtractor = new TxtTextExtractor();
-        String s = txtTextExtractor
-                .extractText(resourceAsStream)
+        String s = TxtTextExtractor.of(resourceAsStream)
+                .extractText()
                 .getText();
 
         assertThat(s,is("test1234"));
@@ -33,9 +32,8 @@ public class TxtTextExtractorTest {
 
         InputStream resourceAsStream = getInputStreamFromResource("sometextwithstopwords.txt");
 
-        TxtTextExtractor txtTextExtractor = new TxtTextExtractor();
-        String s = txtTextExtractor
-                .extractText(resourceAsStream)
+        String s = TxtTextExtractor.of(resourceAsStream)
+                .extractText()
                 .removeStopwords(Locale.GERMAN)
                 .getText();
 

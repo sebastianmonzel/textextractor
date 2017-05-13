@@ -1,18 +1,24 @@
 package de.sebastianmonzel.textextractor;
 
-import java.io.File;
-import java.io.InputStream;
+import java.io.*;
 
 public class OcrTextExtractor extends AbstractTextExtractor {
 
-    @Override
-    public AbstractTextExtractor extractText(File file) {
-        return null;
+    public static OcrTextExtractor of(File file) {
+        return new OcrTextExtractor(file);
     }
 
-    @Override
-    public AbstractTextExtractor extractText(InputStream inputStream) {
-        return null;
+    public OcrTextExtractor(File file) {
+        try {
+            this.inputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
+
+    @Override
+    public AbstractTextExtractor extractText() throws IOException {
+        return null;
+    }
 }
