@@ -36,12 +36,10 @@ public abstract class AbstractTextExtractor {
 
     public AbstractTextExtractor removePunctuationMarks() {
 
-        String[] punctuationMarks = {",",";","!",".","?"};
+        String[] punctuationMarks = {"\\,","\\;","\\!","\\.","\\?"};
 
         for (String punctuationMark : punctuationMarks) {
-            text = text.replaceAll(" " + punctuationMark.trim() + " "," ");
-            text = text.replaceAll( punctuationMark.trim() + " ","");
-            text = text.replaceAll(" " + punctuationMark.trim(),"");
+            text = text.replaceAll(punctuationMark.trim(),"");
         }
         return this;
     }

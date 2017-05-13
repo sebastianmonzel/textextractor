@@ -35,10 +35,13 @@ public class TxtTextExtractorTest {
         String s = TxtTextExtractor.of(resourceAsStream)
                 .extractText()
                 .removeStopwords(Locale.GERMAN)
+                .removePunctuationMarks()
                 .getText();
 
         assertThat(s,is("test"));
     }
+
+
 
     private InputStream getInputStreamFromResource(String name) {
         return getClass().getClassLoader().getResourceAsStream(name);
