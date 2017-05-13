@@ -34,7 +34,7 @@ public abstract class AbstractTextExtractor {
         TxtTextExtractor txtTextExtractor = new TxtTextExtractor();
         String stopwordText = txtTextExtractor.extractText(stopwordFile);
 
-        return stopwordText.split("\r\n");
+        return stopwordText.split( System.getProperty("line.separator"));
     }
 
     private File resolveStopwordFileByLocale(Locale locale) {
