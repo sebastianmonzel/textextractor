@@ -15,15 +15,11 @@ public abstract class AbstractTextExtractor {
 
         String[] stopwords = readStopwords(locale);
 
-        String replacedText = text;
         for (String stopword : stopwords) {
-            replacedText = replacedText.replaceAll(" " + stopword.trim() + " "," ");
-            replacedText = replacedText.replaceAll( stopword.trim() + " ","");
-            replacedText = replacedText.replaceAll(" " + stopword.trim(),"");
+            text = text.replaceAll(" " + stopword.trim() + " "," ");
+            text = text.replaceAll( stopword.trim() + " ","");
+            text = text.replaceAll(" " + stopword.trim(),"");
         }
-
-        text = replacedText;
-
         return this;
     }
 
@@ -35,7 +31,19 @@ public abstract class AbstractTextExtractor {
                 .extractText()
                 .getText();
 
-        return stopwordText.split( System.getProperty(LINE_SEPARATOR));
+        return stopwordText.split(System.getProperty(LINE_SEPARATOR));
+    }
+
+    public AbstractTextExtractor removePunctuationMarks() {
+
+        String[] punctuationMarks = {",",";","!",".","?"};
+
+        for (String punctuationMark : punctuationMarks) {
+            text = text.replaceAll(" " + punctuationMark.trim() + " "," ");
+            text = text.replaceAll( punctuationMark.trim() + " ","");
+            text = text.replaceAll(" " + punctuationMark.trim(),"");
+        }
+        return this;
     }
 
     private File resolveStopwordFileByLocale(Locale locale) {
