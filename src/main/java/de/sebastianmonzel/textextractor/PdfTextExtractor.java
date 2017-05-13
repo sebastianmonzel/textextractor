@@ -4,6 +4,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 import java.io.File;
+import java.io.InputStream;
 
 public class PdfTextExtractor extends TextExtractor {
 
@@ -24,6 +25,11 @@ public class PdfTextExtractor extends TextExtractor {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    @Override
+    public String extractText(InputStream inputStream) {
         return null;
     }
 }
