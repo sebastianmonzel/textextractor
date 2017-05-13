@@ -10,6 +10,14 @@
     <name>textextractor</name>
     <url>http://maven.apache.org</url>
 
+    <developers>
+        <developer>
+            <id>sebastianmonzel</id>
+            <name>Sebastian Monzel</name>
+            <email>mail@sebastianmonzel.de</email>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
