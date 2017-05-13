@@ -16,13 +16,9 @@ public abstract class AbstractTextExtractor {
 
         String replacedText = text;
         for (String stopword : stopwords) {
-            System.out.println(stopword);
             replacedText = replacedText.replaceAll(" " + stopword.trim() + " "," ");
-            System.out.println(replacedText);
             replacedText = replacedText.replaceAll( stopword.trim() + " ","");
-            System.out.println(replacedText);
             replacedText = replacedText.replaceAll(" " + stopword.trim(),"");
-            System.out.println(replacedText);
         }
 
         return replacedText;
