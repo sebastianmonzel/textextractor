@@ -41,5 +41,21 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
         assertThat(s,is("test"));
     }
 
+    @Test
+    public void extractTextByRegex() throws Exception {
+
+        InputStream resourceAsStream = getInputStreamFromResource("sometextwithstopwords.txt");
+
+        String s = TxtTextExtractor.of(resourceAsStream)
+                .extractText()
+                .removePunctuationMarks()
+                .filterByRegularExpression(".*(ist).*")
+                .getText();
+
+        assertThat(s,is("ist"));
+    }
+
+
+
 
 }

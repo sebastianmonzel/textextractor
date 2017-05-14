@@ -13,15 +13,11 @@ public class TxtTextExtractor extends AbstractTextExtractor {
     }
 
     public TxtTextExtractor(File file) {
-        try {
-            this.inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        super(file);
     }
 
     public TxtTextExtractor(InputStream inputStream) {
-        this.inputStream = inputStream;
+        super(inputStream);
     }
 
     public AbstractTextExtractor extractText() {

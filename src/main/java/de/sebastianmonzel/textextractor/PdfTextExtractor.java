@@ -17,15 +17,11 @@ public class PdfTextExtractor extends AbstractTextExtractor {
     }
 
     public PdfTextExtractor(File file) {
-        try {
-            this.inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        super(file);
     }
 
-    public PdfTextExtractor(InputStream file) {
-        this.inputStream = file;
+    public PdfTextExtractor(InputStream inputStream) {
+       super(inputStream);
     }
 
     @Override

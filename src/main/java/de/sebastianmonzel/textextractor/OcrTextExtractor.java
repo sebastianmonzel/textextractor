@@ -13,15 +13,11 @@ public class OcrTextExtractor extends AbstractTextExtractor {
     }
 
     public OcrTextExtractor(File file) {
-        try {
-            this.inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        super(file);
     }
 
-    public OcrTextExtractor(InputStream file) {
-        this.inputStream = file;
+    public OcrTextExtractor(InputStream inputStream) {
+        super(inputStream);
     }
 
 
