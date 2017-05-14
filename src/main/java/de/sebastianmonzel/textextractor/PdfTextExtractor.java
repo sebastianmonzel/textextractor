@@ -25,15 +25,21 @@ public class PdfTextExtractor extends AbstractTextExtractor {
     }
 
     @Override
-    public AbstractTextExtractor extractText() throws IOException {
+    public AbstractTextExtractor extractText() {
 
-        PDDocument document = PDDocument.load(inputStream);
-        PDFTextStripper stripper = new PDFTextStripper();
+        try {
+            PDDocument document = null;
+            document = PDDocument.load(inputStream);
+            PDFTextStripper stripper = new PDFTextStripper();
 
-        String content = stripper.getText(document);
-        document.close();
+            String content = stripper.getText(document);
+            document.close();
 
-        text = content;
+            text = content;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return this;
     }

@@ -82,6 +82,7 @@ public abstract class AbstractTextExtractor {
             text = matcher.group(1);
         } else {
             System.err.println("Pattern '" + regularExpression + "' not found. Will ignore it.");
+            text = null;
         }
 
         return this;
