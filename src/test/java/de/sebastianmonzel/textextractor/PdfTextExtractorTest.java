@@ -16,12 +16,12 @@ public class PdfTextExtractorTest extends AbstractTextExtractorTest {
     public void extractText() throws Exception {
 
 
-        String text = PdfTextExtractor
+        String extractedText = PdfTextExtractor
                 .of(getInputStreamFromResource("sometextwithstopwords.pdf"))
                 .extractText()
                 .getText();
 
-        assertThat(text,is("dies ist ein test, " + System.getProperty("line.separator")));
+        assertThat(extractedText,is("dies ist ein test, " + System.getProperty("line.separator")));
 
     }
 

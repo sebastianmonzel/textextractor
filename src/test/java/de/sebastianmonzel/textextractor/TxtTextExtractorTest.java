@@ -20,11 +20,11 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
 
         InputStream resourceAsStream = getInputStreamFromResource("test1234.txt");
 
-        String s = TxtTextExtractor.of(resourceAsStream)
+        String extractedText = TxtTextExtractor.of(resourceAsStream)
                 .extractText()
                 .getText();
 
-        assertThat(s,is("test1234"));
+        assertThat(extractedText,is("test1234"));
     }
 
     @Test
@@ -32,13 +32,13 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
 
         InputStream resourceAsStream = getInputStreamFromResource("sometextwithstopwords.txt");
 
-        String s = TxtTextExtractor.of(resourceAsStream)
+        String extractedText = TxtTextExtractor.of(resourceAsStream)
                 .extractText()
                 .removeStopwords(Locale.GERMAN)
                 .removePunctuationMarks()
                 .getText();
 
-        assertThat(s,is("test"));
+        assertThat(extractedText,is("test"));
     }
 
     @Test
@@ -46,16 +46,13 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
 
         InputStream resourceAsStream = getInputStreamFromResource("sometextwithstopwords.txt");
 
-        String s = TxtTextExtractor.of(resourceAsStream)
+        String extractedText = TxtTextExtractor.of(resourceAsStream)
                 .extractText()
                 .removePunctuationMarks()
                 .filterByRegularExpression(".*(ist).*")
                 .getText();
 
-        assertThat(s,is("ist"));
+        assertThat(extractedText,is("ist"));
     }
-
-
-
 
 }
