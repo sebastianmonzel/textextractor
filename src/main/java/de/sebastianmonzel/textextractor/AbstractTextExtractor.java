@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 public abstract class AbstractTextExtractor {
 
     public static final String LINE_SEPARATOR = "line.separator";
-    protected String text;
+    protected String extractedText;
+    protected String resultedText;
     protected InputStream inputStream;
 
     public AbstractTextExtractor(File file) {
@@ -24,7 +25,8 @@ public abstract class AbstractTextExtractor {
     }
 
     public AbstractTextExtractor(String text) {
-        this.text = text;
+        this.extractedText = text;
+        this.resultedText = text;
     }
 
     public abstract AbstractTextExtractor extractText();
@@ -34,9 +36,9 @@ public abstract class AbstractTextExtractor {
         String[] stopwords = readStopwords(locale);
 
         for (String stopword : stopwords) {
-            text = text.replaceAll(" " + stopword.trim() + " "," ");
-            text = text.replaceAll( stopword.trim() + " ","");
-            text = text.replaceAll(" " + stopword.trim(),"");
+            resultedText = resultedText.replaceAll(" " + stopword.trim() + " "," ");
+            resultedText = resultedText.replaceAll( stopword.trim() + " ","");
+            resultedText = resultedText.replaceAll(" " + stopword.trim(),"");
         }
         return this;
     }
@@ -47,7 +49,7 @@ public abstract class AbstractTextExtractor {
         String stopwordText = TxtTextExtractor
                 .of(stopwordFile)
                 .extractText()
-                .getText();
+                .getResultedText();
 
         return stopwordText.split(System.getProperty(LINE_SEPARATOR));
     }
@@ -65,27 +67,27 @@ public abstract class AbstractTextExtractor {
         String[] punctuationMarks = {"\\,","\\;","\\!","\\.","\\?"};
 
         for (String punctuationMark : punctuationMarks) {
-            text = text.replaceAll(punctuationMark.trim(),"");
+            resultedText = resultedText.replaceAll(punctuationMark.trim(),"");
         }
         return this;
     }
 
     public AbstractTextExtractor removeXmlTags() {
 
-        text = text.replaceAll("<[^>]+>", "");
+        resultedText = resultedText.replaceAll("<[^>]+>", "");
         return this;
     }
 
     public AbstractTextExtractor filterByRegularExpression(String regularExpression) {
 
         final Pattern pattern = Pattern.compile(regularExpression);
-        final Matcher matcher = pattern.matcher(text);
+        final Matcher matcher = pattern.matcher(extractedText);
 
         if ( matcher.find() ) {
-            text = matcher.group(1);
+            resultedText = matcher.group(1);
         } else {
             System.err.println("Pattern '" + regularExpression + "' not found. Will ignore it.");
-            text = null;
+            resultedText = null;
         }
 
         return this;
@@ -98,7 +100,13 @@ public abstract class AbstractTextExtractor {
     }
 
 
-    public String getText() {
-        return text;
+    public String getResultedText() {
+        String resultedTextToReturn = resultedText;
+        resetResultedText();
+        return resultedTextToReturn;
+    }
+
+    protected void resetResultedText() {
+        resultedText = extractedText;
     }
 }

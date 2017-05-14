@@ -22,7 +22,7 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
 
         String extractedText = TxtTextExtractor.of(resourceAsStream)
                 .extractText()
-                .getText();
+                .getResultedText();
 
         assertThat(extractedText,is("test1234"));
     }
@@ -36,7 +36,7 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
                 .extractText()
                 .removeStopwords(Locale.GERMAN)
                 .removePunctuationMarks()
-                .getText();
+                .getResultedText();
 
         assertThat(extractedText,is("test"));
     }
@@ -50,7 +50,7 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
                 .extractText()
                 .removePunctuationMarks()
                 .filterByRegularExpression(".*(ist).*")
-                .getText();
+                .getResultedText();
 
         assertThat(extractedText,is("ist"));
     }
@@ -63,7 +63,7 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
         String extractedText = TxtTextExtractor.of(resourceAsStream)
                 .extractText()
                 .removeXmlTags()
-                .getText();
+                .getResultedText();
 
         assertThat(extractedText,is("dies ist ein test"));
     }

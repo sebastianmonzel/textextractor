@@ -19,7 +19,7 @@ public class PdfTextExtractorTest extends AbstractTextExtractorTest {
         String extractedText = PdfTextExtractor
                 .of(getInputStreamFromResource("sometextwithstopwords.pdf"))
                 .extractText()
-                .getText();
+                .getResultedText();
 
         assertThat(extractedText,is("dies ist ein test, " + System.getProperty("line.separator")));
 

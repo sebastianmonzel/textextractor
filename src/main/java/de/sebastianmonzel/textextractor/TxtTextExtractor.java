@@ -48,7 +48,8 @@ public class TxtTextExtractor extends AbstractTextExtractor {
                 e.printStackTrace();
             }
         }
-        text = stringBuilder.toString();
+        extractedText = stringBuilder.toString();
+        resetResultedText();
 
         return this;
     }

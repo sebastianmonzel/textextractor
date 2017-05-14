@@ -43,7 +43,8 @@ public class PdfTextExtractor extends AbstractTextExtractor {
             String content = stripper.getText(document);
             document.close();
 
-            text = content;
+            extractedText = content;
+            resetResultedText();
 
         } catch (IOException e) {
             e.printStackTrace();
