@@ -12,6 +12,10 @@ public class OcrTextExtractor extends AbstractTextExtractor {
         return new OcrTextExtractor(file);
     }
 
+    public static OcrTextExtractor of(String text) {
+        return new OcrTextExtractor(text);
+    }
+
     public OcrTextExtractor(File file) {
         super(file);
     }
@@ -20,9 +24,13 @@ public class OcrTextExtractor extends AbstractTextExtractor {
         super(inputStream);
     }
 
+    public OcrTextExtractor(String inputStream) {
+        super(inputStream);
+    }
+
 
     @Override
-    public AbstractTextExtractor extractText() throws IOException {
+    public AbstractTextExtractor extractText() {
         return null;
     }
 }

@@ -16,12 +16,20 @@ public class PdfTextExtractor extends AbstractTextExtractor {
         return new PdfTextExtractor(file);
     }
 
+    public static PdfTextExtractor of(String text) {
+        return new PdfTextExtractor(text);
+    }
+
     public PdfTextExtractor(File file) {
         super(file);
     }
 
     public PdfTextExtractor(InputStream inputStream) {
        super(inputStream);
+    }
+
+    public PdfTextExtractor(String text) {
+        super(text);
     }
 
     @Override

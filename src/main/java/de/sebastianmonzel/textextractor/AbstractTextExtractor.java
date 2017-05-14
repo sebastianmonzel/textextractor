@@ -23,8 +23,11 @@ public abstract class AbstractTextExtractor {
         this.inputStream = inputStream;
     }
 
+    public AbstractTextExtractor(String text) {
+        this.text = text;
+    }
 
-    public abstract AbstractTextExtractor extractText() throws IOException;
+    public abstract AbstractTextExtractor extractText();
 
     public AbstractTextExtractor removeStopwords(Locale locale) {
 

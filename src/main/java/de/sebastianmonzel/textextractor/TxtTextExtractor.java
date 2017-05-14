@@ -12,12 +12,20 @@ public class TxtTextExtractor extends AbstractTextExtractor {
         return new TxtTextExtractor(inputStream);
     }
 
+    public static TxtTextExtractor of(String text) {
+        return new TxtTextExtractor(text);
+    }
+
     public TxtTextExtractor(File file) {
         super(file);
     }
 
     public TxtTextExtractor(InputStream inputStream) {
         super(inputStream);
+    }
+
+    public TxtTextExtractor(String text) {
+        super(text);
     }
 
     public AbstractTextExtractor extractText() {
