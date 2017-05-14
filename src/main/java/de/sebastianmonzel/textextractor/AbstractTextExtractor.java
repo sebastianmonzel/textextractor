@@ -67,6 +67,12 @@ public abstract class AbstractTextExtractor {
         return this;
     }
 
+    public AbstractTextExtractor removeXmlTags() {
+
+        text = text.replaceAll("<[^>]+>", "");
+        return this;
+    }
+
     public AbstractTextExtractor filterByRegularExpression(String regularExpression) {
 
         final Pattern pattern = Pattern.compile(regularExpression);

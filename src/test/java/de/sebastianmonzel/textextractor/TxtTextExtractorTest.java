@@ -55,4 +55,19 @@ public class TxtTextExtractorTest extends AbstractTextExtractorTest {
         assertThat(extractedText,is("ist"));
     }
 
+    @Test
+    public void removeXml() throws Exception {
+
+        InputStream resourceAsStream = getInputStreamFromResource("sometextwithxmltags.txt");
+
+        String extractedText = TxtTextExtractor.of(resourceAsStream)
+                .extractText()
+                .removeXmlTags()
+                .getText();
+
+        assertThat(extractedText,is("dies ist ein test"));
+    }
+
+
+
 }
