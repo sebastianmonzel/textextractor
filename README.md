@@ -9,4 +9,4 @@ Provides logic to read text from different file formats.
 [Gitter Chat link]: https://gitter.im/sebastianmonzel/textextractor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 [Travis Develop image]: https://img.shields.io/travis/sebastianmonzel/textextractor/develop.svg?style=flat-square
-[Travis Develop link]: https://travis-ci.org/sebastianmonzel/textextractor
+[Travis Develop link]: https://travis-ci.org/sebastianmonzel/textextractor-java
