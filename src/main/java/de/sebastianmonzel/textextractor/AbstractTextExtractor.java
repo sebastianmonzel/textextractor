@@ -22,6 +22,8 @@ public abstract class AbstractTextExtractor {
 
     public AbstractTextExtractor(InputStream inputStream) {
         this.inputStream = inputStream;
+        this.extractedText = "";
+        this.resultedText = "";
     }
 
     public AbstractTextExtractor(String text) {
@@ -36,9 +38,9 @@ public abstract class AbstractTextExtractor {
         String[] stopwords = readStopwords(locale);
 
         for (String stopword : stopwords) {
-            resultedText = resultedText.replaceAll(" " + stopword.trim() + " "," ");
+            resultedText = resultedText.replaceAll( " " + stopword.trim() + " "," ");
             resultedText = resultedText.replaceAll( stopword.trim() + " ","");
-            resultedText = resultedText.replaceAll(" " + stopword.trim(),"");
+            resultedText = resultedText.replaceAll( " " + stopword.trim(),"");
         }
         return this;
     }
@@ -96,6 +98,30 @@ public abstract class AbstractTextExtractor {
     public AbstractTextExtractor normalizeWhitespace() {
 
 
+
+        return this;
+    }
+
+    public AbstractTextExtractor limitToFirstRows(int limit) {
+        BufferedReader bufferedReader = new BufferedReader(new StringReader(resultedText));
+
+        int actualLine = 1;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+
+                stringBuilder.append(line).append(System.getProperty("line.separator"));
+                if (actualLine >= limit) {
+                    break;
+                }
+                actualLine++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        resultedText = stringBuilder.toString();
         return this;
     }
 
