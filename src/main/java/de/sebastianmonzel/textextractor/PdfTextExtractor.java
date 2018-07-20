@@ -1,5 +1,6 @@
 package de.sebastianmonzel.textextractor;
 
+import de.sebastianmonzel.textextractor.util.PDFLayoutTextStripper;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -38,7 +39,7 @@ public class PdfTextExtractor extends AbstractTextExtractor {
         try {
             PDDocument document = null;
             document = PDDocument.load(inputStream);
-            PDFTextStripper stripper = new PDFTextStripper();
+            PDFLayoutTextStripper stripper = new PDFLayoutTextStripper();
 
             String content = stripper.getText(document);
             document.close();

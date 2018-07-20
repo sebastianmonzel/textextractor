@@ -3,6 +3,8 @@ package de.sebastianmonzel.textextractor;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -21,7 +23,7 @@ public class PdfTextExtractorTest extends AbstractTextExtractorTest {
                 .extractText()
                 .getResultedText();
 
-        assertThat(extractedText,is("dies ist ein test, " + System.getProperty("line.separator")));
+        assertThat(extractedText,containsString("dies    ist   ein   test,"));
 
     }
 
