@@ -1,5 +1,7 @@
 package de.sebastianmonzel.textextractor;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.*;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -15,6 +17,8 @@ public abstract class AbstractTextExtractor {
     public AbstractTextExtractor(File file) {
         try {
             this.inputStream = new FileInputStream(file);
+            this.extractedText = "";
+            this.resultedText = "";
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -38,7 +42,7 @@ public abstract class AbstractTextExtractor {
         String[] stopwords = readStopwords(locale);
 
         for (String stopword : stopwords) {
-            resultedText = resultedText.replaceAll( " " + stopword.trim() + " "," ");
+            resultedText = resolveText().replaceAll( " " + stopword.trim() + " "," ");
             resultedText = resultedText.replaceAll( stopword.trim() + " ","");
             resultedText = resultedText.replaceAll( " " + stopword.trim(),"");
         }
@@ -69,21 +73,21 @@ public abstract class AbstractTextExtractor {
         String[] punctuationMarks = {"\\,","\\;","\\!","\\.","\\?"};
 
         for (String punctuationMark : punctuationMarks) {
-            resultedText = resultedText.replaceAll(punctuationMark.trim(),"");
+            resultedText = resolveText().replaceAll(punctuationMark.trim(),"");
         }
         return this;
     }
 
     public AbstractTextExtractor removeXmlTags() {
 
-        resultedText = resultedText.replaceAll("<[^>]+>", "");
+        resultedText = resolveText().replaceAll("<[^>]+>", "");
         return this;
     }
 
     public AbstractTextExtractor filterByRegularExpression(String regularExpression) {
 
         final Pattern pattern = Pattern.compile(regularExpression);
-        final Matcher matcher = pattern.matcher(extractedText);
+        final Matcher matcher = pattern.matcher(resolveText());
 
         if ( matcher.find() ) {
             resultedText = matcher.group(1);
@@ -96,14 +100,12 @@ public abstract class AbstractTextExtractor {
     }
 
     public AbstractTextExtractor normalizeWhitespace() {
-
-
-
+        // TODO
         return this;
     }
 
     public AbstractTextExtractor limitToFirstRows(int limit) {
-        BufferedReader bufferedReader = new BufferedReader(new StringReader(resultedText));
+        BufferedReader bufferedReader = new BufferedReader(new StringReader(resolveText()));
 
         int actualLine = 1;
         StringBuilder stringBuilder = new StringBuilder();
@@ -123,6 +125,10 @@ public abstract class AbstractTextExtractor {
         }
         resultedText = stringBuilder.toString();
         return this;
+    }
+
+    private String resolveText() {
+        return StringUtils.isEmpty(resultedText) ? extractedText : resultedText;
     }
 
 
