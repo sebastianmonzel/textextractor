@@ -2,6 +2,7 @@ package de.sebastianmonzel.textextractor;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.*;
@@ -25,6 +26,7 @@ public class PdfTextExtractorTest extends AbstractTextExtractorTest {
         assertThat(extractedText,containsString("dies    ist   ein   test,"));
     }
 
+    @Ignore
     @Test
     public void limitText() {
 
